@@ -26,6 +26,7 @@ RegisterNetEvent('rofos:sellDrug', function(amount, CurrentCops, npc)
         loop = true
         -- xPlayer.Functions.AddMoney("cash", math.random(Config.drugs[drug].min, Config.drugs[drug].max), "Deal")
         priceamount = math.random(Config.drugs[bestitemname].min, Config.drugs[bestitemname].max)
+   if Config.UseBlackAsItem == true then
         for i = 0, amount do
         if CurrentCops >= 3 and CurrentCops <= 7 then
         xPlayer.Functions.AddItem("dirty_money", priceamount+40)
@@ -38,6 +39,19 @@ RegisterNetEvent('rofos:sellDrug', function(amount, CurrentCops, npc)
         dirtyprice = dirtyprice + priceamount
         end    
         end
+                    
+   else
+        for i = 0, amount do
+        if CurrentCops >= 3 and CurrentCops <= 7 then
+        dirtyprice = dirtyprice + priceamount+40
+        elseif CurrentCops > 7 then
+        dirtyprice = dirtyprice + priceamount+80
+        else
+        dirtyprice = dirtyprice + priceamount
+        end    
+        end
+        xPlayer.Functions.AddMoney('blackmoney', dirtyprice)              
+   end
         TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items["dirty_money"], 'add', dirtyprice)
 
     end
