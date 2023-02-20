@@ -2,6 +2,7 @@ Config = {}
 Config.minCops = 0
 Config.minTime = 4000
 Config.maxTime = 4000
+Config.UseBlackAsItem = false
 Config.drugs = {
     ["heroin"]=   {min = 100, max = 200},
     ["shrooms"]=  {min = 400, max = 1200},
